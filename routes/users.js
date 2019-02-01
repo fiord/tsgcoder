@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+module.exports.index = function(req, res, next) {
+  models.Users.all().then(user => {
+    res.render('users/index', {users: users});
+  });
+};
 
+router.get('/', console.log("hoge"));
 module.exports = router;
