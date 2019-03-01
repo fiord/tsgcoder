@@ -1,5 +1,6 @@
 import React, { Compoenent } from 'react';
 import { Link } from 'react-router-dom';
+import { Table, Button, Form } from 'reactstrap';
 
 class UserList extends React.Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class UserList extends React.Component {
     const user_list = this.state.users.map(user => {
       return (
         <tr key={`UserList-${user.id}`}>
-          <td>
+          <th scope="row">
             <Link to={`/users/${user.id}`}>{user.id}</Link>
-          </td>
+          </th>
           <td>{user.name}</td>
           <td>{user.twitter}</td>
           <td>
-            <Link to={`/users/${user.id}/edit`}><button>Edit</button></Link>
+            <Link to={`/users/${user.id}/edit`}><Button color="primary">Edit</Button></Link>
             <form action={'/_api/users/' + user.id + '?_method=DELETE'} method="post">
               <input name="_method" type="hidden" value="DELETE" readOnly />
               <input name="id" type="hidden" value={user.id} readOnly />
@@ -46,7 +47,7 @@ class UserList extends React.Component {
     });
 
     return (
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>ID</th>
@@ -58,7 +59,7 @@ class UserList extends React.Component {
         <tbody>
           {user_list}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }

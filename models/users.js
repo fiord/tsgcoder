@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const users = sequelize.define('Users', {
+  var users = sequelize.define('users', {
     name: DataTypes.STRING,
     twitter: DataTypes.STRING,
     class: DataTypes.ENUM('admin', 'normal'),

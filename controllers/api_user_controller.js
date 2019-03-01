@@ -2,14 +2,14 @@ var models = require('../models');
 
 // show all user list
 module.exports.index = function(req, res, next) {
-  models.Users.all().then(users => {
+  models.users.all().then(users => {
     res.json({ users: users });
   });
 };
 
 // show user details
 module.exports.show = function(req, res, next) {
-  models.Users.findById(req.params.id).then(user => {
+  models.users.findById(req.params.id).then(user => {
     res.json({ user: user });
   });
 };
@@ -17,11 +17,14 @@ module.exports.show = function(req, res, next) {
 // create user
 module.exports.create = function(req, res, next) {
   var properties = ["name", "twitter", "class", "note", "created_at"];
-  var new_values = {};
+  var new_values = {
+    class: "normal",
+  };
   properties.forEach(prop => {
-    new_values[props] = req.body[prop];
+    new_values[prop] = req.body[prop];
   });
-  models.Users.create(
+  console.log(models.users);
+  models.users.create(
     new_values
   ).then(new_user => {
     res.redirect(302, '/users');
@@ -31,7 +34,7 @@ module.exports.create = function(req, res, next) {
 // update user
 module.exports.update = function(req, res, next) {
   console.log('exports.update is executed');
-  models.Users.findById(req.params.id).then(user => {
+  models.users.findById(req.params.id).then(user => {
     var properties = ["name", "twitter", "class", "note", "created_at"];
     var update_values = {};
     properties.forEach(prop => {
@@ -44,7 +47,7 @@ module.exports.update = function(req, res, next) {
 
 // destroy user
 module.exports.destroy = function(req, res, next) {
-  models.Users.destroy({
+  models.users.destroy({
     where: { id: req.params.id }
   }).then(user => {
     res.redirect(302, '/users');

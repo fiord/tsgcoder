@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.prettyprint ol.linenums > li {
+  list-style-type: decimal;
+}

@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+var debug = require('debug');
 var http = require('http');
 var methodOverride = require('method-override');
 
-var index = require('./routes/index');
 var api = require('./routes/api');
+var tester = require('./routes/tester');
+
+var code_executer = require('./lib/docker');
 
 var port = process.env.PORT || 3000;
 var app = express();
@@ -19,7 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 
+// routing
 app.use('/_api/', api);
+app.use('/test/', tester);
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
@@ -51,3 +56,7 @@ app.listen(port, err => {
 });
 
 module.exports = app;
+
+setInterval(() => {
+  code_executer.exec();
+}, 1000);
