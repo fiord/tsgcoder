@@ -8,8 +8,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      author_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       code: {
         type: Sequelize.TEXT
+      },
+      stdin: {
+        type: Sequelize.TEXT
+      },
+      stdout: {
+        type: Sequelize.TEXT
+      },
+      stderr: {
+        type: Sequelize.TEXT
+      },
+      result: {
+        type: Sequelize.ENUM(
+          'WJ',
+          'AC',
+          'WA',
+          'TLE',
+          'MLE',
+          'OLE',
+          'RE',
+        )
       },
       state: {
         type: Sequelize.ENUM(

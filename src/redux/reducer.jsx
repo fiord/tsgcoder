@@ -1,6 +1,12 @@
 const initialState = {
   codeId: null,
+  langs: [],
+  lang: "",
   code: "",
+  stdin: "",
+  stdout: "",
+  stderr: "",
+  state: "pending",
   isOpen: false,
 };
 

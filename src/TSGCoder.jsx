@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as myActions from './redux/action';
+import Login from './user/Login';
 import UserList from './user/UserList';
 import UserDetail from './user/UserDetail';
 import UserNew from './user/UserNew';
@@ -46,6 +47,7 @@ class TSGCoderComponent extends React.Component {
           </Navbar>
           <Route exact path='/' component={CodeForm} />
           <Route exact path='/:id([0-9]+)' component={CodeResult} />
+          <Route exact path='/login' component={Login} />
           <Route exact path='/users' component={UserList} />
           <Route exact path='/users/:id([0-9]+)' component={UserDetail} />
           <Route exact path='/users/new' component={UserNew} />
