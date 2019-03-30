@@ -1,5 +1,6 @@
 require('dotenv').config();
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
@@ -13,8 +14,7 @@ var session = require('express-session');
 var auth = require('./passport');
 var passport = auth.passport;
 
-var api = require('./routes/api');
-var tester = require('./routes/tester');
+var controllers = require('./controllers');
 
 var code_executer = require('./lib/docker');
 
@@ -31,19 +31,29 @@ app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(session({secret: 'fiord'}));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // routing
-app.use('/_api/', api);
-app.use('/test/', tester);
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+router.get('/_api/users/', (req, res, next) => controllers.api_user_controller.get(req, res, next, passport));
+router.get('/_api/users/:id(\\d+)', controllers.api_user_controller.show);
+router.put('/_api/users/:id(\\d+)', controllers.api_user_controller.update);
+router.delete('/_api/users/:id(\\d+)', controllers.api_user_controller.destroy);
+router.get('/test/codes', (req, res, next) => controllers.code_tester.get(req, res, next, passport));
+router.post('/test/test', (req, res, next) => controllers.code_tester.set(req, res, next, passport));
+router.get('/test/code/:id(\\d+)', controllers.code_tester.detail);
+router.get('/test/langs', controllers.code_tester.langs);
+
+router.get('/auth/twitter', passport.authenticate('twitter'));
+router.get('/auth/twitter/callback', passport.authenticate('twitter', {
   successRedirect: '/',
   failureRedirect: '/login'
 }));
-app.get('/*', function(req, res) {
+
+router.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+app.use(router);
 
 // catch 404
 app.use(function(req, res, next) {

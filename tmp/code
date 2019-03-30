@@ -1,2 +1,5 @@
-n,m = map(int, input().split())
-print(n ** m)
+#include <stdio.h>
+int main() {
+    printf("hello\n");
+    return 0;
+}

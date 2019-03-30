@@ -1,15 +1,19 @@
 var models = require('../models');
 
-// show all user list
-module.exports.index = function(req, res, next) {
-  models.users.all().then(users => {
-    res.json({ users: users });
-  });
+// get user data
+module.exports.get = async function(req, res, next, passport) {
+  if(passport.session && passport.session.id) {
+    const user = await models.users.findByPk(passport.session.id);
+    res.json({user: user, error: ""});
+  }
+  else {
+    res.json({error: 'Please Login.'});
+  }
 };
 
 // show user details
 module.exports.show = function(req, res, next) {
-  models.users.findById(req.params.id).then(user => {
+  models.users.findByPk(req.params.id).then(user => {
     res.json({ user: user });
   });
 };
@@ -34,7 +38,7 @@ module.exports.create = function(req, res, next) {
 // update user
 module.exports.update = function(req, res, next) {
   console.log('exports.update is executed');
-  models.users.findById(req.params.id).then(user => {
+  models.users.findByPk(req.params.id).then(user => {
     var properties = ["name", "twitter", "class", "note", "created_at"];
     var update_values = {};
     properties.forEach(prop => {

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const exec = sequelize.define('exec', {
-    author_id: DataTypes.INTEGER,
+    author_id: DataTypes.BIGINT,
     lang: DataTypes.TEXT,
     code: DataTypes.TEXT,
     stdin: DataTypes.TEXT,

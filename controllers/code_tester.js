@@ -2,21 +2,37 @@ var models = require('../models');
 
 module.exports.langs = function(req, res, next) {
   models.lang.all().then((ret) => {
-    console.log(ret)
     return res.json({ ret: ret });
   });
 };
 
-module.exports.set = async function(req, res, next) {
+module.exports.get = async function(req, res, next, passport) {
+  if(passport.session && passport.session.id) {
+    let codes = await models.exec.findAll({
+      where: {
+        author_id: passport.session.id
+      }
+    });
+    for(let i = 0; i < codes.length; i++) {
+      const lang_data = await models.lang.findById(codes[i].lang);
+      codes[i].lang = lang_data.name;
+    }
+    res.json({codes: codes});
+  }
+  else {
+    res.json({error: 'please login'});
+  }
+}
+
+module.exports.set = async function(req, res, next, passport) {
   const lang = await models.lang.findOne({
     where: {
       name: req.body.lang,
     }
   });
 
-  console.log(lang);
-
   models.exec.create({
+    author_id: (passport.session && passport.session.id ? passport.session.id : 0),
     lang: lang.id,
     code: req.body.code,
     stdin: req.body.stdin,

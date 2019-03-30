@@ -1,4 +1,6 @@
 const initialState = {
+  user: null,
+  codes: [],
   codeId: null,
   langs: [],
   lang: "",
@@ -7,6 +9,7 @@ const initialState = {
   stdout: "",
   stderr: "",
   state: "pending",
+  error: "",
   isOpen: false,
 };
 

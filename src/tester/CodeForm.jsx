@@ -22,7 +22,6 @@ class CodeFormComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props.code);
     return (
       <Form action="/test/test" method="POST">
         <FormGroup>

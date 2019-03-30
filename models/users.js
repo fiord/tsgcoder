@@ -1,8 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var users = sequelize.define('users', {
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+    },
     name: DataTypes.STRING,
     twitter: DataTypes.STRING,
+    email: DataTypes.STRING,
+    image: DataTypes.STRING,
     class: DataTypes.ENUM('admin', 'normal'),
     note: DataTypes.STRING,
     created_at: DataTypes.DATE
