@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const lang = sequelize.define('lang', {
     name: DataTypes.STRING,
-    commands: DataTypes.STRING
+    commands: DataTypes.STRING,
+    compile_code: DataTypes.STRING,
   }, {
     underscored: true,
   });

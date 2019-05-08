@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 int main() {
-    printf("hello\n");
-    return 0;
+cout<<"OK"<<endl;
+return 0;
 }
