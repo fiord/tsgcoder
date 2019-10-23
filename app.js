@@ -30,7 +30,7 @@ app.use(methodOverride('_method'));
 // passport-twitter
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(session({secret: 'fiord'}));
+// app.use(session({secret: 'fiord'}));
 app.use(express.static(path.join(__dirname, 'build')));
 
 // routing
@@ -38,10 +38,13 @@ router.get('/_api/users/', (req, res, next) => controllers.api_user_controller.g
 router.get('/_api/users/:id(\\d+)', controllers.api_user_controller.show);
 router.put('/_api/users/:id(\\d+)', controllers.api_user_controller.update);
 router.delete('/_api/users/:id(\\d+)', controllers.api_user_controller.destroy);
+router.get('/_api/problems', controllers.problems.list);
+router.get('/_api/problems/:id(\\d+)', controllers.problems.detail);
 router.get('/test/codes', (req, res, next) => controllers.code_tester.get(req, res, next, passport));
 router.post('/test/test', (req, res, next) => controllers.code_tester.set(req, res, next, passport));
 router.get('/test/code/:id(\\d+)', controllers.code_tester.detail);
-router.get('/test/langs', controllers.code_tester.langs);
+router.get('/code/langs', controllers.code_tester.langs);
+router.post('/problems/submit', (req, res, next) => controllers.problems.register(req, res, next, passport));
 
 router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get('/auth/twitter/callback', passport.authenticate('twitter', {

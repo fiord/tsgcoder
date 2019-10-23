@@ -32,12 +32,10 @@ class MyPageComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log("nya-n");
     this.loadUser().then(() => this.loadCode());
   }
 
   render() {
-    console.log("rendering");
     if(this.props.error) {
       return (
         <p>{this.props.error}</p>

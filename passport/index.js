@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
+  User.findByPk(id, (err, user) => {
     done(null, obj);
   })
 });
@@ -35,7 +35,7 @@ passport.use(new TwitterStrategy({
       return;
     }
 
-    user = await models.users.findById(req.user.id);
+    user = await models.users.findByPk(req.user.id);
     user.twitter = profile.id;
     user.tokens.push({kind: 'twitter', accessToken, tokenSecret});
     user.profile.name = user.profile.name || profile.displayName;

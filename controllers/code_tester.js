@@ -1,7 +1,7 @@
 var models = require('../models');
 
 module.exports.langs = function(req, res, next) {
-  models.lang.all().then((ret) => {
+  models.lang.findAll().then((ret) => {
     return res.json({ ret: ret });
   });
 };
@@ -14,7 +14,7 @@ module.exports.get = async function(req, res, next, passport) {
       }
     });
     for(let i = 0; i < codes.length; i++) {
-      const lang_data = await models.lang.findById(codes[i].lang);
+      const lang_data = await models.lang.findByPk(codes[i].lang);
       codes[i].lang = lang_data.name;
     }
     res.json({codes: codes});
@@ -25,6 +25,7 @@ module.exports.get = async function(req, res, next, passport) {
 }
 
 module.exports.set = async function(req, res, next, passport) {
+  console.log(req.body);
   const lang = await models.lang.findOne({
     where: {
       name: req.body.lang,
@@ -43,8 +44,8 @@ module.exports.set = async function(req, res, next, passport) {
 };
 
 module.exports.detail = function(req, res, next) {
-  models.exec.findById(req.params.id).then((code) => {
-    models.lang.findById(code.lang).then((lang) => {
+  models.exec.findByPk(req.params.id).then((code) => {
+    models.lang.findByPk(code.lang).then((lang) => {
       res.json({
         code: code,
         lang: lang.name,

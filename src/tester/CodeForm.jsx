@@ -10,12 +10,13 @@ import {
 import * as myActions from '../redux/action';
 
 class CodeFormComponent extends React.Component {
+  // eslint-disable-next-line
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    fetch('/test/langs').then(res => res.json())
+    fetch('/code/langs').then(res => res.json())
       .then(res => {
         this.props.actions.update({langs: res.ret});
       })

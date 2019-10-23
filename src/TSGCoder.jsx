@@ -1,4 +1,5 @@
-import React, { Component } from 'react'; import { BrowserRouter, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -18,6 +19,8 @@ import UserEdit from './user/UserEdit';
 import CodeForm from './tester/CodeForm';
 import CodeResult from './tester/CodeResult';
 import MyPage from './tester/MyPage';
+import ProblemList from './problem/ProblemList';
+import ProblemDetail from './problem/ProblemDetail';
 
 class TSGCoderComponent extends React.Component {
   constructor(props) {
@@ -80,12 +83,17 @@ class TSGCoderComponent extends React.Component {
           <Route exact path='/users/:id([0-9]+)' component={UserDetail} />
           <Route exact path='/users/new' component={UserNew} />
           <Route exact path='/users/:id([0-9]+)/edit' component={UserEdit} />
+          <Route exact path='/problems' component={ProblemList} />
+          <Route exact path='/problems/:id([0-9]+)' component={ProblemDetail} />
         </div>
       </BrowserRouter>
     );
   }
 }
 
+          // <Route exact path='/submissions' component={SubmissionList} />
+          // <Route exact path='/submissions/user/:id([0-9]+)' component={UserSubmissions} />
+          // <Route exact path='/submissions/:id([0-9]+)' component={SubmissionDetail} />
 const mapStateToProps = (state) => ({
   isOpen: state.isOpen,
   user: state.user

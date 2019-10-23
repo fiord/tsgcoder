@@ -1,6 +1,10 @@
 const initialState = {
-  user: null,
-  codes: [],
+  // main menu
+  isOpen: false, // toggle main menu
+  user: null, // user authentication
+  // code execution
+  codes: [], // code list by user
+  // show and submit code
   codeId: null,
   langs: [],
   lang: "",
@@ -8,9 +12,13 @@ const initialState = {
   stdin: "",
   stdout: "",
   stderr: "",
+  // code judge
   state: "pending",
   error: "",
-  isOpen: false,
+  // problem
+  problems: [], // problem list
+  problemId: null,
+  problem: null, // problem data
 };
 
 export default function reducer(state = initialState, action) {

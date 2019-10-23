@@ -1,6 +1,6 @@
-import React, { Compoenent } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Table, Button, Form } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
 class UserList extends React.Component {
   constructor(props) {

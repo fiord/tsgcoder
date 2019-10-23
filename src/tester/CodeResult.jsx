@@ -13,7 +13,7 @@ class CodeResultComponent extends React.Component {
   }
 
   loadCode() {
-    if(this.props.state == "finished") {
+    if(this.props.state === "finished") {
       clearInterval(this.timer);
     }
     else {
@@ -35,7 +35,7 @@ class CodeResultComponent extends React.Component {
   }
 
   renderCode(src) {
-    if (src || this.props.state == "finished") {
+    if (src || this.props.state === "finished") {
       return (
         <div>
           <pre class="prettyprint linenums"><code>
