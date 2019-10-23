@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "fiord",
+    "password": "",
     "database": "tsgcoder_development",
     "host": "localhost",
     "dialect": "mysql"

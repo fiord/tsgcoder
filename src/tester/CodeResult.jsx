@@ -49,11 +49,11 @@ class CodeResultComponent extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.timer = setInterval(this.loadCode, 1000);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     clearInterval(this.timer);
   }
 

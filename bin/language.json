@@ -1,0 +1,37 @@
+[
+  {
+    "name": "C (GCC 8.3.0)",
+    "commands": "if [ -f /tmp/a.out ]; then /tmp/a.out; fi",
+    "compile_code": "cp ./code /tmp/code.c; gcc -O2 -o /tmp/a.out /tmp/code.c -lm"
+  },
+  {
+    "name": "C++ (GCC 8.3.0)",
+    "commands": "if [ -f /tmp/a.out ]; then /tmp/a.out; fi",
+    "compile_code": "cp ./code /tmp/code.cpp; g++ -std=gnu++03 -O2 -o /tmp/a.out /tmp/code.cpp -lm"
+  },
+  {
+    "name": "C++14 (GCC 8.3.0)",
+    "commands": "if [ -f /tmp/a.out ]; then /tmp/a.out; fi",
+    "compile_code": "cp ./code /tmp/code.cpp; g++ -std=gnu++1y -O2 -o /tmp/a.out /tmp/code.cpp -lm"
+  },
+  {
+    "name": "Python2 (2.7.16)",
+    "commands": "/usr/bin/python2 -B /tmp/code.py",
+    "compile_code": "cp ./code /tmp/code.py"
+  },
+  {
+    "name": "Python3 (3.7.5)",
+    "commands": "/usr/bin/python3 -B /tmp/code.py",
+    "compile_code": "cp ./code /tmp/code.py"
+  },
+  {
+    "name": "Ruby (2.5.7)",
+    "commands": "/usr/bin/ruby --disable-gems /tmp/code.rb",
+    "compile_code": "cp ./code /tmp/code.rb"
+  },
+  {
+    "name": "Text (cat)",
+    "commands": "/bin/cat /tmp/code.txt",
+    "compile_code": "cp ./code /tmp/code.txt"
+  }
+]
