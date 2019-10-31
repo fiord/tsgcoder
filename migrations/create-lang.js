@@ -1,15 +1,22 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('submissions', {
+    return queryInterface.createTable('langs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      result: {
+      name: {
         type: Sequelize.STRING
+      },
+      commands: {
+        type: Sequelize.STRING
+      },
+      compile_code: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       created_at: {
         allowNull: false,
@@ -22,6 +29,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('submissions');
+    return queryInterface.dropTable('langs');
   }
 };

@@ -3,17 +3,25 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('execs', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true
       },
       author_id: {
         allowNull: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
+      },
+      lang: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
       },
       code: {
         type: Sequelize.TEXT
+      },
+      compile: {
+        type: Sequelize.TEXT,
+        allowNull: true
       },
       stdin: {
         type: Sequelize.TEXT
@@ -23,17 +31,6 @@ module.exports = {
       },
       stderr: {
         type: Sequelize.TEXT
-      },
-      result: {
-        type: Sequelize.ENUM(
-          'WJ',
-          'AC',
-          'WA',
-          'TLE',
-          'MLE',
-          'OLE',
-          'RE',
-        )
       },
       state: {
         type: Sequelize.ENUM(

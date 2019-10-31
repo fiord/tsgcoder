@@ -1,0 +1,14 @@
+[
+  {
+    "in": "in/sample01.txt",
+    "out": "out/sample01.txt"
+  },
+  {
+    "in": "in/sample02.txt",
+    "out": "out/sample02.txt"
+  },
+  {
+    "in": "in/01.txt",
+    "out": "out/01.txt"
+  }
+]

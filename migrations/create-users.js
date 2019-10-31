@@ -1,20 +1,26 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('cases', {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING
       },
-      input: {
+      twitter: {
         type: Sequelize.STRING
       },
-      output: {
+      class: {
+        type: Sequelize.ENUM('admin', 'normal')
+      },
+      image: {
+        type: Sequelize.STRING
+      },
+      note: {
         type: Sequelize.STRING
       },
       created_at: {
@@ -28,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('cases');
+    return queryInterface.dropTable('users');
   }
 };

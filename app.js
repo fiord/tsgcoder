@@ -30,7 +30,12 @@ app.use(methodOverride('_method'));
 // passport-twitter
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(session({secret: 'fiord'}));
+app.use(session({
+  secret: 'fiord',
+  resave: true,
+  saveUninitialized: false
+}));
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 // routing
