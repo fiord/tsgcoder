@@ -11,8 +11,8 @@ module.exports = {
         allowNull: true,
         type: Sequelize.BIGINT
       },
-      lang: {
-        type: Sequelize.INTEGER,
+      lang_id: {
+        type: Sequelize.BIGINT,
         allowNull: false,
         default: 0
       },

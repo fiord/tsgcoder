@@ -21,6 +21,7 @@ import CodeResult from './tester/CodeResult';
 import MyPage from './tester/MyPage';
 import ProblemList from './problem/ProblemList';
 import ProblemDetail from './problem/ProblemDetail';
+import SubmissionDetail from './submission/SubmissionDetail';
 
 class TSGCoderComponent extends React.Component {
   constructor(props) {
@@ -71,6 +72,9 @@ class TSGCoderComponent extends React.Component {
                 <NavItem>
                   <NavLink href="https://github.com/HyogaGlacier/tsgcoder">Github</NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink href="/problems">Problems</NavLink>
+                </NavItem>
                 {this.render_user()}
               </Nav>
             </Collapse>
@@ -85,6 +89,7 @@ class TSGCoderComponent extends React.Component {
           <Route exact path='/users/:id([0-9]+)/edit' component={UserEdit} />
           <Route exact path='/problems' component={ProblemList} />
           <Route exact path='/problems/:id([0-9]+)' component={ProblemDetail} />
+          <Route exact path='/submissions/:id([0-9]+)' component={SubmissionDetail} />
         </div>
       </BrowserRouter>
     );
@@ -93,7 +98,6 @@ class TSGCoderComponent extends React.Component {
 
           // <Route exact path='/submissions' component={SubmissionList} />
           // <Route exact path='/submissions/user/:id([0-9]+)' component={UserSubmissions} />
-          // <Route exact path='/submissions/:id([0-9]+)' component={SubmissionDetail} />
 const mapStateToProps = (state) => ({
   isOpen: state.isOpen,
   user: state.user

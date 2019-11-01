@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const exec = sequelize.define('exec', {
     author_id: DataTypes.BIGINT,
-    lang: DataTypes.INTEGER,
+    lang_id: DataTypes.BIGINT,
     code: DataTypes.TEXT,
     compile: DataTypes.TEXT,
     stdin: DataTypes.TEXT,
@@ -18,6 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   });
   exec.associate = function(models) {
     // associations can be defined here
+    exec.belongsTo(models.users, {
+      foreignKey: "author_id",
+      targetKey: "id"
+    });
+    exec.belongsTo(models.lang, {
+      foreignKey: "lang_id",
+      targetKey: "id"
+    });
   };
   return exec;
 };

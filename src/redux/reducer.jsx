@@ -19,6 +19,11 @@ const initialState = {
   problems: [], // problem list
   problemId: null,
   problem: null, // problem data
+  // submission
+  userDat: null,
+  submissionId: null,
+  result: "WJ",
+  testcases: [],
 };
 
 export default function reducer(state = initialState, action) {

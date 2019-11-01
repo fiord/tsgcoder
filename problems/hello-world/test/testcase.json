@@ -1,13 +1,16 @@
 [
   {
+    "name": "sample01",
     "in": "in/sample01.txt",
     "out": "out/sample01.txt"
   },
   {
+    "name": "sample02",
     "in": "in/sample02.txt",
     "out": "out/sample02.txt"
   },
   {
+    "name": "01",
     "in": "in/01.txt",
     "out": "out/01.txt"
   }
