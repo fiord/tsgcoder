@@ -4,11 +4,11 @@ MAINTAINER fiord hyoga_quasar@yahoo.co.jp
 
 RUN apk update
 RUN apk add --no-cache \
-  "gcc=8.3.0-r0" \
-  "g++=8.3.0-r0" \
-  "python2=2.7.16-r1" \
-  "python3=3.7.5-r1" \
-  "ruby=2.5.7-r0"
+  "gcc=9.2.0-r4" \
+  "g++=9.2.0-r4" \
+  "python2=2.7.16-r3" \
+  "python3=3.8.2-r0" \
+  "ruby=2.6.6-r2"
 
 RUN rm -rf /var/cache/apk/*
 RUN adduser -h home/fiord -D fiord
