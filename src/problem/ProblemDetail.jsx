@@ -9,6 +9,7 @@ import {
   Label,
   Button
 } from 'reactstrap';
+import DOMPurify from 'dompurify';
 
 const html = require('html');
 const marked = require('marked');
@@ -29,9 +30,9 @@ class ProblemDetailComponent extends React.Component {
       })
       .then(async (response_json) => {
         const mdDat = response_json.problem;
-        const htmlDat = html.prettyPrint(marked(mdDat.main, {
+        const htmlDat = DOMPurify.sanitize(html.prettyPrint(marked(mdDat.main, {
           // option
-        }));
+        })));
         console.log("html data:", htmlDat);
         await this.props.actions.update({ problem: {
           title: mdDat.title,
